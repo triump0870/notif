@@ -88,3 +88,13 @@ def update_procfile():
 
 def update_production_requirements():
     local("sed -i '' 's/^#.//' requirements/production.txt")
+
+@task()
+def set_heroku_env():
+    chdir = local('pwd', True)
+    filename = "%s/notif/settings/local.env" % chdir
+    with open(filename, 'r') as f:
+        lines = f.readlines()
+        for line in lines:
+            if '#' not in line and 'DATABASE_URL' not in line and 'DEBUG' not in line and line.strip():
+                local('heroku config:set %s' % line)
