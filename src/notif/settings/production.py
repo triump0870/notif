@@ -1,6 +1,6 @@
 # In production set the environment variable like this:
 #    DJANGO_SETTINGS_MODULE=notif.settings.production
-from .base import *             # NOQA
+from .base import *  # NOQA
 import logging.config
 
 # For security and performance reasons, DEBUG is turned off
@@ -64,3 +64,4 @@ LOGGING = {
 
 logging.config.dictConfig(LOGGING)
 ALLOWED_HOSTS += ['notif-app.herokuapp.com']
+BROKER_URL = os.environ.get('CLOUDAMQP_URL')
