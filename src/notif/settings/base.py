@@ -7,8 +7,9 @@ https://docs.djangoproject.com/en/dev/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
-from django.core.urlresolvers import reverse_lazy
 from os.path import dirname, join, exists
+
+from django.core.urlresolvers import reverse_lazy
 
 # Build paths inside the project like this: join(BASE_DIR, "directory")
 BASE_DIR = dirname(dirname(dirname(__file__)))
@@ -43,6 +44,7 @@ TEMPLATES = [
 
 # Use 12factor inspired environment variables or from a file
 import environ
+
 env = environ.Env()
 
 # Ideally move env file should be outside the git repo
@@ -58,7 +60,7 @@ if exists(env_file):
 # Raises ImproperlyConfigured exception if SECRET_KEY not in os.environ
 SECRET_KEY = env('SECRET_KEY')
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 
@@ -74,6 +76,7 @@ INSTALLED_APPS = (
     'authtools',
     'crispy_forms',
     'easy_thumbnails',
+    'rest_framework',
 
     'profiles',
     'accounts',
@@ -126,6 +129,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # For Bootstrap 3, change error alert to 'danger'
 from django.contrib import messages
+
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
@@ -135,4 +139,12 @@ AUTH_USER_MODEL = 'authtools.User'
 LOGIN_REDIRECT_URL = reverse_lazy("profiles:show_self")
 LOGIN_URL = reverse_lazy("accounts:login")
 
-THUMBNAIL_EXTENSION = 'png'     # Or any extn for your thumbnails
+THUMBNAIL_EXTENSION = 'png'  # Or any extn for your thumbnails
+
+# Raven settings
+RAVEN_CLIENT_ID = env('RAVEN_CLIENT_ID')
+RAVEN_CLIENT_SECRET = env('RAVEN_CLIENT_SECRET')
+APP_ID = env('APP_ID')
+
+# import the celery configurations here
+from notif.settings.celeryconfig import *
