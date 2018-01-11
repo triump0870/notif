@@ -32,7 +32,7 @@ class Celery(celery.Celery):
 # set the default Django settings module for the 'celery' program.
 serialization.registry._decoders.pop("application/x-python-serialize")
 
-app = Celery('notif.settings', broker=settings.BROKER_URL,
+app = Celery('notif.settings', broker=settings.BROKER_URL, backend=settings.CELERY_RESULT_BACKEND,
              include=['notif.settings.celery_tasks'])
 
 # Using a string here means the worker will not have to
