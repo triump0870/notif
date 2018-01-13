@@ -80,6 +80,8 @@ INSTALLED_APPS = (
 
     'profiles',
     'accounts',
+    'notifications',
+    'apis',
 
 )
 
