@@ -82,6 +82,7 @@ INSTALLED_APPS = (
     'accounts',
     'notifications',
     'apis',
+    'secondhome',
 
 )
 
@@ -147,6 +148,7 @@ THUMBNAIL_EXTENSION = 'png'  # Or any extn for your thumbnails
 RAVEN_CLIENT_ID = env('RAVEN_CLIENT_ID')
 RAVEN_CLIENT_SECRET = env('RAVEN_CLIENT_SECRET')
 APP_ID = env('APP_ID')
-
+USER_AGENT = env('USER_AGENT')
+SCRAPPY_SERVER = env('SCRAPPY_SERVER')
 # import the celery configurations here
 from notif.settings.celeryconfig import *
