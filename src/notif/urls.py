@@ -13,6 +13,8 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include(accounts.urls, namespace='accounts')),
     url(r'^apis/', include('apis.urls', namespace='apis')),
+    url(r'^weather/', include('secondhome.urls', namespace='pets')),
+
 ]
 
 # User-uploaded files like profile pics need to be served in development
