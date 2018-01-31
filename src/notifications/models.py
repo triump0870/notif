@@ -10,7 +10,7 @@ from django.utils import timezone
 class Item(models.Model):
     unique_id = models.CharField(max_length=100, null=True)
     data = models.TextField()
-    date = models.DateTimeField(default=timezone.now())
+    date = models.DateTimeField(default=timezone.now)
 
     @property
     def to_dict(self):
